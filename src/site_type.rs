@@ -10,6 +10,7 @@ pub enum SiteType {
     Unknown,
 }
 
+/// public function "detect" with argument url of type &str that looks at a URL and returns a SiteType
 pub fn detect(url: &str) -> SiteType {
     let url = url.to_lowercase();
     if url.contains("youtube.com") || url.contains("youtu.be") {

@@ -1,4 +1,3 @@
-
 mod io;
 mod site_type;
 mod rss_gen;
@@ -14,7 +13,8 @@ fn print_usage() {
     println!("If no output file is given, output will be written to rss-feeds.txt");
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let args: Vec<String> = env::args().collect();
     if args.len() == 1 || args.contains(&"--help".to_string()) {
         print_usage();
@@ -53,7 +53,7 @@ fn main() {
     if let Some(url) = input_url {
         let site = url.trim();
         let site_type = site_type::detect(site);
-        match rss_gen::generate(site, &site_type) {
+        match rss_gen::generate(site, &site_type).await {
             Ok(rss_url) => println!("{}", rss_url),
             Err(e) => eprintln!("Failed to generate RSS for: {} ({})", site, e),
         }
@@ -84,7 +84,7 @@ fn main() {
             continue;
         }
         let site_type = site_type::detect(site);
-        match rss_gen::generate(site, &site_type) {
+        match rss_gen::generate(site, &site_type).await {
             Ok(rss_url) => rss_feeds.push(rss_url),
             Err(e) => {
                 eprintln!("Failed to generate RSS for: {} ({})", site, e);

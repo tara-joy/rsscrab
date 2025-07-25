@@ -9,19 +9,9 @@ RSS Crab is a simple tool to generate RSS feeds from blogs, video platforms, and
 
 ## How to Use
 
-1. **Build the app:**
-   ```bash
-   cargo build --release
-   ```
-2. **Run the app:**
+Replace `<URL>` with the website you want to fetch a feed from.
 
-   ```bash
-   ./target/release/rsscrab <URL>
-   ```
-
-   Replace `<URL>` with the website you want to fetch a feed from.
-
-3. **Get your RSS feed:**
+1. **Get your RSS feed:**
    The app will print the RSS feed to your terminal or save it as needed.
 
 ## Requirements
